@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spor Sonrası Soğuma ve Esneme Protokolleri | Hazırlayan: Ümit Emre Erdoğan</title>
+    <style>
+        :root {
+            --primary: #3a7bd5;
+            --secondary: #00d2ff;
+            --dark: #2c3e50;
+            --light: #f5f7fa;
+            --accent: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: white;
+            clip-path: ellipse(50% 50% at 50% 0%);
+            z-index: 1;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.5rem 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .img-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .img-container figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .protocol-card {
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .protocol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .protocol-steps {
+            list-style-position: inside;
+            margin: 1rem 0 1rem 1.5rem;
+        }
+        
+        .protocol-steps li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .tab-container {
+            margin: 2rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .tab-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .tab-button.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .citation {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+            font-style: italic;
+            color: #555;
+            margin: 1.5rem 0;
+        }
+        
+        .benefit-card {
+            background-color: #f0f8ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--success);
+        }
+        
+        .warning-card {
+            background-color: #fff5f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--warning);
+        }
+        
+        .reference-list {
+            margin: 2rem 0;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light);
+        }
+        
+        .reference-list h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .reference-list ol {
+            margin-left: 1.5rem;
+        }
+        
+        .reference-list li {
+            margin-bottom: 0.8rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .author-info {
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* Accordion Styles */
+        .accordion {
+            background-color: #f0f0f0;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion:after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .accordion.active:after {
+            content: '-';
+        }
+        
+        .accordion:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .panel {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: white;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .panel-content {
+            padding: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .tab-buttons {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Spor Sonrası Soğuma ve Esneme Protokolleri</h1>
+            <p>Koşu, Bisiklet ve Yüzme Antrenmanları İçin Bilimsel Rehber</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#giris" class="active">Giriş</a></li>
+            <li><a href="#bilimsel-temeller">Bilimsel Temeller</a></li>
+            <li><a href="#kosu">Koşu Protokolü</a></li>
+            <li><a href="#bisiklet">Bisiklet Protokolü</a></li>
+            <li><a href="#yuzme">Yüzme Protokolü</a></li>
+            <li><a href="#kaynakca">Kaynakça</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="giris">
+            <h2>Giriş</h2>
+            <p>Soğuma ve esneme hareketleri, spor performansının önemli bir parçasıdır. Özellikle koşu, bisiklet ve yüzme gibi dayanıklılık sporlarında, uygun soğuma protokollerinin uygulanması kas ağrılarının azaltılması, yaralanmaların önlenmesi ve bir sonraki antrenman için toparlanma sürecinin hızlandırılması açısından büyük önem taşır.</p>
+            
+            <p>Bu web sitesi, bilimsel araştırmalara dayalı olarak koşu, bisiklet ve yüzme sporları için özel soğuma ve esneme protokollerini sunmaktadır. Her bir spor için özel olarak tasarlanmış, etkisi kanıtlanmış protokoller ve pratik uygulamalar bu rehberde yer almaktadır.</p>
+            
+            <div class="benefit-card">
+                <h3>Soğuma ve Esnemenin Faydaları</h3>
+                <ul>
+                    <li>Kan dolaşımının düzenlenmesi</li>
+                    <li>Kas ağrılarının azaltılması</li>
+                    <li>Metabolik atıkların uzaklaştırılması</li>
+                    <li>Kalp atış hızının kademeli olarak düşürülmesi</li>
+                    <li>Esnekliğin artırılması</li>
+                    <li>Yaralanma riskinin azaltılması</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="bilimsel-temeller">
+            <h2>Soğuma ve Esneme: Bilimsel Temeller</h2>
+            
+            <p>Spor sonrası soğuma ve esneme hareketlerinin etkileri üzerine yapılan bilimsel araştırmalar, bu uygulamaların çeşitli fizyolojik ve psikolojik etkilerini ortaya koymaktadır. Ancak, bazı geleneksel inanışların aksine, bilimsel çalışmalar her zaman bu uygulamaların beklendiği kadar etkili olmadığını da göstermektedir.</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'fizyolojik-etkiler')">Fizyolojik Etkiler</button>
+                    <button class="tab-button" onclick="openTab(event, 'performans-etkisi')">Performans Etkisi</button>
+                    <button class="tab-button" onclick="openTab(event, 'kas-agrisi')">Kas Ağrısı Üzerine Etkiler</button>
+                </div>
+                
+                <div id="fizyolojik-etkiler" class="tab-content active">
+                    <h3>Soğuma ve Esnemenin Fizyolojik Etkileri</h3>
+                    <p>Aktif soğuma, kandaki laktik asit birikiminin daha hızlı temizlenmesine yardımcı olur. Ancak, kas dokusundaki laktik asit temizlenmesi üzerinde aynı etkiyi göstermeyebilir. Bilimsel araştırmalar, aktif soğumanın aşağıdaki fizyolojik etkilere sahip olduğunu göstermiştir:</p>
+                    <ul>
+                        <li>Kardiyovasküler ve solunum sisteminin daha hızlı toparlanması</li>
+                        <li>Bağışıklık sisteminin baskılanmasının kısmen önlenmesi</li>
+                        <li>Kan pH seviyesinin daha hızlı normale dönmesi</li>
+                    </ul>
+                    <blockquote>
+                        "Aktif soğuma, kan dolaşımındaki laktatı daha hızlı temizler, ancak kas dokusunda aynı etkiyi göstermeyebilir. Kardiyovasküler ve solunum sisteminin toparlanmasını hızlandırabilir." - PMC5999142 (2018)
+                    </blockquote>
+                    <p class="citation">Kaynak: Van Hooren, B., & Peake, J. M. (2018). Do we need a cool-down after exercise? A narrative review of the psychophysiological effects and the effects on performance, injuries and the long-term adaptive response. Sports Medicine, 48(7), 1575-1595.</p>
+                </div>
+                
+                <div id="performans-etkisi" class="tab-content">
+                    <h3>Soğuma ve Esnemenin Performans Üzerine Etkisi</h3>
+                    <p>Bilimsel araştırmalar, aktif soğumanın aynı gün içinde yapılacak bir sonraki antrenman veya müsabaka performansına genellikle anlamlı bir katkı sağlamadığını göstermektedir. Ancak, bazı çalışmalarda ertesi gün performansına küçük olumlu etkiler görülmüştür.</p>
+                    <ul>
+                        <li>Aynı gün içinde (>4 saat sonra) yapılacak antrenmanda genellikle performans artışı sağlamaz</li>
+                        <li>Ertesi gün performansına bazı durumlarda küçük olumlu etkiler gösterebilir</li>
+                        <li>Etki bireysel farklılıklara, spor türüne ve esneme protokolüne bağlı olarak değişebilir</li>
+                    </ul>
+                    <blockquote>
+                        "Bir aktif soğuma, aynı gün ve sonraki gün(ler) spor performansını artırmada büyük ölçüde etkisizdir, ancak sonraki gün(ler) performansı üzerinde bazı yararlı etkiler bildirilmiştir." - PMC5999142 (2018)
+                    </blockquote>
+                </div>
+                
+                <div id="kas-agrisi" class="tab-content">
+                    <h3>Soğuma ve Esnemenin Kas Ağrısı Üzerine Etkileri</h3>
+                    <p>Birçok bilimsel çalışma, aktif soğumanın gecikmiş kas ağrısı (DOMS) üzerinde anlamlı bir etkisi olmadığını göstermektedir. Hem rekreasyonel sporcular hem de profesyonel atletler üzerinde yapılan araştırmalar bu bulguları desteklemektedir.</p>
+                    <ul>
+                        <li>Aktif soğuma genellikle gecikmiş kas ağrısını azaltmada etkili değildir</li>
+                        <li>Kas hasarının dolaylı göstergeleri üzerinde anlamlı bir etki göstermez</li>
+                        <li>Nöromusküler fonksiyon veya kontraktil özelliklerin iyileşmesini hızlandırmaz</li>
+                        <li>Eklem hareket açıklığındaki azalmayı veya kas-tendon sertliğindeki artışı önlemez</li>
+                    </ul>
+                    <blockquote>
+                        "Çalışmaların çoğu aktif soğumanın gecikmiş kas ağrısı veya hassasiyeti üzerinde anlamlı bir etkisi olmadığını göstermiştir." - PMC5999142 (2018)
+                    </blockquote>
+                </div>
+            </div>
+            
+            <div class="warning-card">
+                <h3>Bilimsel Perspektif</h3>
+                <p>Bilimsel araştırmalar, soğuma ve esneme hareketlerinin geleneksel olarak inanılan birçok faydasını doğrulamamaktadır. Bununla birlikte, bu uygulamaların bazı fizyolojik ve psikolojik faydaları vardır ve bireysel faktörlere bağlı olarak değişebilir. Bu nedenle, soğuma ve esneme protokollerini kişisel ihtiyaçlarınıza göre uyarlamanız önemlidir.</p>
+            </div>
+        </section>
+        
+        <section id="kosu">
+            <h2>Koşu Sonrası Soğuma ve Esneme Protokolü</h2>
+            
+            <div class="img-container">
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/896dcd50-b0e8-4385-ad0d-3f107f3719c4_wm" alt="Koşu Sonrası Esneme Hareketleri" width="700">
+                <figcaption>Koşu sonrası baldır ve hamstring esneme hareketleri</figcaption>
+            </div>
+            
+            <p>Koşu sonrası soğuma ve esneme protokolü, özellikle alt ekstremite kaslarına odaklanır. Bu protokol, koşu sırasında yoğun çalışan quadriceps, hamstring, baldır ve kalça kaslarının esnekliğini artırmayı ve toparlanmayı hızlandırmayı amaçlar.</p>
+            
+            <button class="accordion">Koşu Sonrası Aktif Soğuma (5-10 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Koşu antrenmanını aniden bitirmek yerine, kademeli olarak yavaşlayarak soğuma sürecini başlatın:</p>
+                    <ol class="protocol-steps">
+                        <li>2-3 dakika yavaş tempoda hafif koşu</li>
+                        <li>2-3 dakika hızlı yürüyüş</li>
+                        <li>1-2 dakika normal yürüyüş</li>
+                    </ol>
+                    <p>Bu aktif soğuma, kalp atış hızının kademeli olarak düşmesini sağlar ve kasların aniden hareketsiz kalmasını önler.</p>
+                </div>
+            </div>
+            
+            <button class="accordion">Dinamik Esneme Hareketleri (3-5 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <h4>1. Dinamik Bacak Salınımları</h4>
+                    <ul class="protocol-steps">
+                        <li>Denge için duvara veya sabit bir noktaya tutunun</li>
+                        <li>Bir bacağınızı kontrollü bir şekilde öne ve arkaya doğru sallayın</li>
+                        <li>Her bacak için 10-15 tekrar yapın</li>
+                        <li>Bacaklarınızı sağa ve sola da sallayabilirsiniz (kasık esnekliği için)</li>
+                    </ul>
+                    
+                    <h4>2. Kalça Daireleri</h4>
+                    <ul class="protocol-steps">
+                        <li>Denge için duvara tutunun</li>
+                        <li>Bir bacağınızı kaldırın ve diz bükük pozisyonda</li>
+                        <li>Kalçanızı dairesel hareketlerle çevirin</li>
+                        <li>Her yöne 10 tekrar yapın ve bacakları değiştirin</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="accordion">Statik Esneme Hareketleri (10-15 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Her esneme pozisyonunu 30-60 saniye tutun ve her hareketi 2-3 kez tekrarlayın. Esnerken derin ve düzenli nefes alın.</p>
+                    
+                    <h4>1. Quadriceps (Ön Uyluk) Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Ayakta dururken bir elinizle dengeyi sağlayın</li>
+                        <li>Bir ayak bileğinizi tutup topuğunuzu kalçanıza doğru çekin</li>
+                        <li>Kalçalarınızı öne itin ve dizlerinizi yan yana tutun</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>2. Hamstring (Arka Uyluk) Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Bir bacağınızı düz olarak öne uzatın, diğer bacak hafifçe bükülü</li>
+                        <li>Kalçalardan öne doğru eğilin</li>
+                        <li>Ellerinizi uzattığınız bacağa doğru uzatın</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>3. Baldır Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Bir duvar veya sabit bir nesneye doğru yaklaşın</li>
+                        <li>Bir bacağınızı arkaya atın, diz düz, topuk yerde</li>
+                        <li>Ön bacak bükülü, ağırlık ön bacakta olacak</li>
+                        <li>Kalçalarınızı öne iterek arka bacağın baldırında esnemeyi hissedin</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>4. Kalça Fleksörleri Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Bir dizinizi yere koyun, diğer bacak 90 derece açıyla önde</li>
+                        <li>Kalçalarınızı hafifçe öne doğru itin</li>
+                        <li>Üst vücudunuzu dik tutun</li>
+                        <li>Arka bacağın kalça bölgesinde esneme hissedin</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>5. Piriformis (Kalça) Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Sırt üstü yatın, dizler bükülü ve ayaklar yerde</li>
+                        <li>Sağ ayak bileğinizi sol dizinizin üzerine yerleştirin</li>
+                        <li>Her iki elinizle sol uyluğun arkasını kavrayın</li>
+                        <li>Sol bacağınızı göğsünüze doğru çekin</li>
+                        <li>Sağ kalçanızda esnemeyi hissedin</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="protocol-card">
+                <h3>Koşu Özel Protokol Özeti</h3>
+                <p>Koşu sonrası toplam 18-25 dakikalık soğuma protokolü:</p>
+                <ol>
+                    <li><strong>Aktif Soğuma:</strong> 5-10 dakika yavaş tempolu koşu ve yürüyüş</li>
+                    <li><strong>Dinamik Esneme:</strong> 3-5 dakika bacak salınımları ve kalça daireleri</li>
+                    <li><strong>Statik Esneme:</strong> 10-15 dakika alt ekstremite kaslarını hedefleyen statik esneme hareketleri</li>
+                </ol>
+                <p>Bu protokol, koşu sırasında en çok çalışan quadriceps, hamstring, baldır ve kalça kaslarına odaklanır ve kan dolaşımının düzenlenmesini, metabolik atıkların uzaklaştırılmasını ve kasların uzunluğunun yeniden kazanılmasını sağlar.</p>
+            </div>
+        </section>
+        
+        <section id="bisiklet">
+            <h2>Bisiklet Sonrası Soğuma ve Esneme Protokolü</h2>
+            
+            <div class="img-container">
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/5e13832a-774c-4e8f-93bc-69625ced7dc1_wm" alt="Bisiklet Sonrası Esneme Hareketleri" width="700">
+                <figcaption>Bisiklet sonrası kalça fleksörleri ve quadriceps esneme hareketleri</figcaption>
+            </div>
+            
+            <p>Bisiklet sonrası soğuma ve esneme protokolü, özellikle uzun süre bisiklet pozisyonunda kalan kasların yeniden normal uzunluklarına kavuşmasını hedefler. Bisiklet sporu sırasında kalça fleksörleri, quadriceps ve alt sırt bölgesi özellikle zorlanır.</p>
+            
+            <button class="accordion">Bisiklet Sonrası Aktif Soğuma (5-10 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Bisiklet antrenmanını aniden bitirmek yerine, kademeli olarak yoğunluğu azaltın:</p>
+                    <ol class="protocol-steps">
+                        <li>3-5 dakika düşük dirençte, rahat kadansta (70-80 rpm) pedal çevirme</li>
+                        <li>2-3 dakika çok hafif dirençte, yüksek kadansta (90-100 rpm) pedal çevirme</li>
+                        <li>1-2 dakika düşük dirençte, normal kadansta (80-90 rpm) pedal çevirme</li>
+                    </ol>
+                    <p>Bu aktif soğuma, kalp atış hızının kademeli olarak düşmesini sağlar ve metabolik atıkların uzaklaştırılmasına yardımcı olur.</p>
+                </div>
+            </div>
+            
+            <button class="accordion">Mobilite ve Dinamik Esneme Hareketleri (5-7 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <h4>1. Kedi-İnek Hareketi</h4>
+                    <ul class="protocol-steps">
+                        <li>Ellerin ve dizlerin üzerinde başlayın (dört ayak pozisyonu)</li>
+                        <li>Nefes verirken, çenenizi göğsünüze doğru çekin ve sırtınızı yukarı doğru yuvarlayın</li>
+                        <li>Nefes alırken, başınızı kaldırın ve sırtınızı aşağı doğru çukurlaştırın</li>
+                        <li>Bu hareketi 1 dakika boyunca yavaşça tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>2. Pelvik Tilt (Kalça Tilti)</h4>
+                    <ul class="protocol-steps">
+                        <li>Sırtüstü yatın, dizler bükülü, ayaklar yerde</li>
+                        <li>Karın kaslarınızı sıkın ve belinizi yere doğru bastırın</li>
+                        <li>Bu pozisyonu 5 saniye tutun ve bırakın</li>
+                        <li>8 tekrarlı 3 set yapın</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="accordion">Statik Esneme Hareketleri (10-15 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Her esneme pozisyonunu 30-60 saniye tutun ve her hareketi 2-3 kez tekrarlayın. Esnerken derin ve düzenli nefes alın.</p>
+                    
+                    <h4>1. Kalça Fleksörleri Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Yarım diz çökmüş pozisyonda başlayın, bir diz yerde diğer bacak 90 derece açıda önde</li>
+                        <li>Kalçalarınızı hafifçe öne doğru itin</li>
+                        <li>Her iki kalçanın da öne bakmasına dikkat edin</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>2. Glute Bridge (Kalça Köprüsü)</h4>
+                    <ul class="protocol-steps">
+                        <li>Sırtüstü yatın, dizler bükülü, ayaklar yerde</li>
+                        <li>Kalça kaslarınızı sıkın ve kalçalarınızı yerden kaldırın</li>
+                        <li>Üst pozisyonda 5 saniye tutun ve yavaşça indirin</li>
+                        <li>8 tekrarlı 3 set yapın</li>
+                    </ul>
+                    
+                    <h4>3. Döner Kapı Göğüs Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Bir kapı girişinde durun</li>
+                        <li>Her iki kolunuzu kapının her iki yanına, dirsekler 90 derece bükülü olacak şekilde yerleştirin</li>
+                        <li>Yavaşça bir adım öne atın ve göğsünüzde ve omuzlarınızda hafif bir esneme hissedin</li>
+                        <li>Esnemeyi 30 saniye tutun</li>
+                    </ul>
+                    
+                    <h4>4. Quadriceps (Ön Uyluk) Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Ayakta dururken bir elinizle dengeyi sağlayın</li>
+                        <li>Diğer elinizle ayak bileğinizi tutup topuğunuzu kalçanıza doğru çekin</li>
+                        <li>Kalçalarınızı öne itin ve dizlerinizi yan yana tutun</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>5. Hamstring (Arka Uyluk) Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Bir bacağınızı düz olarak öne uzatın, diğer bacak hafifçe bükülü</li>
+                        <li>Kalçalardan öne doğru eğilin</li>
+                        <li>Ellerinizi uzattığınız bacağa doğru uzatın</li>
+                        <li>Esnemeyi 30-60 saniye tutun ve diğer bacakla tekrarlayın</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="protocol-card">
+                <h3>Bisiklet Özel Protokol Özeti</h3>
+                <p>Bisiklet sonrası toplam 20-32 dakikalık soğuma protokolü:</p>
+                <ol>
+                    <li><strong>Aktif Soğuma:</strong> 5-10 dakika düşük dirençte pedal çevirme</li>
+                    <li><strong>Mobilite ve Dinamik Esneme:</strong> 5-7 dakika omurga ve kalça mobilitesini hedefleyen hareketler</li>
+                    <li><strong>Statik Esneme:</strong> 10-15 dakika kalça fleksörleri, quadriceps, hamstring ve göğüs bölgesini hedefleyen esneme hareketleri</li>
+                </ol>
+                <p>Bu protokol, bisiklet sürüşü sırasında uzun süre aynı pozisyonda kalan kasların uzunluğunun geri kazanılmasını ve özellikle bisikletçilerde sık görülen alt sırt problemlerinin önlenmesini hedefler.</p>
+            </div>
+        </section>
+        
+        <section id="yuzme">
+            <h2>Yüzme Sonrası Soğuma ve Esneme Protokolü</h2>
+            
+            <div class="img-container">
+                <img src="https://cdn1.genspark.ai/user-upload-image/gpt_image_generated/a036d8a9-ed86-4c96-93e6-2addf4b9fbc8_wm" alt="Yüzme Sonrası Esneme Hareketleri" width="700">
+                <figcaption>Yüzme sonrası omuz ve triceps esneme hareketleri</figcaption>
+            </div>
+            
+            <p>Yüzme sonrası soğuma ve esneme protokolü, özellikle üst ekstremite kaslarına odaklanır. Yüzme sırasında omuzlar, sırt, göğüs ve kol kasları yoğun şekilde kullanılır ve bu kasların esnekliğinin korunması, yaralanmaların önlenmesi için kritiktir.</p>
+            
+            <button class="accordion">Havuz İçi Soğuma (5-10 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Havuzdan hemen çıkmak yerine, kademeli olarak yoğunluğu azaltın:</p>
+                    <ol class="protocol-steps">
+                        <li>2-3 dakika rahat tempoda serbest stil yüzme</li>
+                        <li>2-3 dakika sırt üstü yüzme (omuz kaslarını rahatlatmak için)</li>
+                        <li>1-2 dakika uzun kayma fazlı kurbağalama</li>
+                        <li>1-2 dakika su içinde dikey pozisyonda hafif kol ve bacak hareketleri ile durma</li>
+                    </ol>
+                    <p>Bu havuz içi soğuma, kalp atış hızının kademeli olarak düşmesini ve kas geriliminin azalmasını sağlar.</p>
+                </div>
+            </div>
+            
+            <button class="accordion">Havuz Dışı Dinamik Hareketler (3-5 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <h4>1. Kol Daireleri</h4>
+                    <ul class="protocol-steps">
+                        <li>Ayakta dik durun</li>
+                        <li>Kollarınızı önce ileri doğru dairesel hareketlerle çevirin</li>
+                        <li>Sonra kollarınızı geriye doğru dairesel hareketlerle çevirin</li>
+                        <li>Her yöne 10-15 tekrar yapın, küçük dairelerle başlayıp giderek büyütün</li>
+                    </ul>
+                    
+                    <h4>2. Boyun Daireleri</h4>
+                    <ul class="protocol-steps">
+                        <li>Çenenizi göğsünüze doğru indirin</li>
+                        <li>Başınızı yavaşça bir taraftan diğer tarafa doğru yarım daire çizerek hareket ettirin</li>
+                        <li>Her yöne 5-10 tekrar yapın</li>
+                        <li>Not: Başınızı tam daire şeklinde çevirmeyin, sadece öne ve yanlara doğru hareket ettirin</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <button class="accordion">Statik Esneme Hareketleri (10-15 dakika)</button>
+            <div class="panel">
+                <div class="panel-content">
+                    <p>Her esneme pozisyonunu 30-60 saniye tutun ve her hareketi 2-3 kez tekrarlayın. Esnerken derin ve düzenli nefes alın.</p>
+                    
+                    <h4>1. Triceps (Kol Arkası) Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Bir kolunuzu başınızın üzerinde dirsekten bükün</li>
+                        <li>Diğer elinizle dirseğinizden tutun ve nazikçe çekin</li>
+                        <li>Esnemeyi 30 saniye tutun ve diğer kolda tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>2. Göğüs ve Omuz Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Ellerinizi sırtınızın arkasında birleştirin</li>
+                        <li>Göğsünüzü öne doğru çıkarırken ellerinizi yukarı kaldırın</li>
+                        <li>Esnemeyi 30 saniye tutun</li>
+                    </ul>
+                    
+                    <h4>3. Yan Gövde Esnetme</h4>
+                    <ul class="protocol-steps">
+                        <li>Ayakta dik durun, bacaklar kalça genişliğinde açık</li>
+                        <li>Bir kolunuzu başınızın üzerinden diğer tarafa doğru uzatın</li>
+                        <li>Üst gövdenizi kolu uzattığınız yöne doğru yavaşça eğin</li>
+                        <li>Esnemeyi 30 saniye tutun ve diğer tarafta tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>4. Sırt ve Omurga Esnetme (Kedi-İnek Hareketi)</h4>
+                    <ul class="protocol-steps">
+                        <li>Ellerin ve dizlerin üzerinde başlayın (dört ayak pozisyonu)</li>
+                        <li>Nefes verirken, çenenizi göğsünüze doğru çekin ve sırtınızı yukarı doğru yuvarlayın</li>
+                        <li>Nefes alırken, başınızı kaldırın ve sırtınızı aşağı doğru çukurlaştırın</li>
+                        <li>Bu hareketi 1 dakika boyunca yavaşça tekrarlayın</li>
+                    </ul>
+                    
+                    <h4>5. Çocuk Pozu</h4>
+                    <ul class="protocol-steps">
+                        <li>Dizlerinizin üzerinde oturun, kalçalarınızı topuklarınıza doğru indirin</li>
+                        <li>Kollarınızı öne doğru uzatın ve alnınızı yere koyun</li>
+                        <li>Nefes alıp verirken rahatlamaya odaklanın</li>
+                        <li>Bu pozisyonu 1-2 dakika tutun</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="protocol-card">
+                <h3>Yüzme Özel Protokol Özeti</h3>
+                <p>Yüzme sonrası toplam 18-30 dakikalık soğuma protokolü:</p>
+                <ol>
+                    <li><strong>Havuz İçi Soğuma:</strong> 5-10 dakika düşük yoğunluklu yüzme ve su içi hareketler</li>
+                    <li><strong>Havuz Dışı Dinamik Hareketler:</strong> 3-5 dakika kol daireleri ve boyun hareketleri</li>
+                    <li><strong>Statik Esneme:</strong> 10-15 dakika üst vücut ve omurga esnekliğini hedefleyen esneme hareketleri</li>
+                </ol>
+                <p>Bu protokol, yüzme sırasında yoğun kullanılan omuz kuşağı, sırt ve göğüs kaslarının esnekliğinin korunmasını ve özellikle rotator manşet yaralanmalarının önlenmesini hedefler.</p>
+            </div>
+        </section>
+        
+        <section id="interaktif-protokol">
+            <h2>İnteraktif Soğuma ve Esneme Protokolü</h2>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="openTab(event, 'protokol-secici')">Protokol Seçici</button>
+                    <button class="tab-button" onclick="openTab(event, 'zaman-kisitli')">Zaman Kısıtlı Protokoller</button>
+                    <button class="tab-button" onclick="openTab(event, 'kombinasyon')">Kombinasyon Protokolleri</button>
+                </div>
+                
+                <div id="protokol-secici" class="tab-content active">
+                    <h3>Kişiselleştirilmiş Protokol Seçici</h3>
+                    <p>Aşağıdaki soruları yanıtlayarak size özel soğuma ve esneme protokolünü oluşturun:</p>
+                    
+                    <div style="margin: 20px 0; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
+                        <div style="margin-bottom: 15px;">
+                            <label for="sport-type" style="display: block; margin-bottom: 5px; font-weight: 600;">1. Hangi sporu yaptınız?</label>
+                            <select id="sport-type" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                                <option value="">Seçiniz...</option>
+                                <option value="running">Koşu</option>
+                                <option value="cycling">Bisiklet</option>
+                                <option value="swimming">Yüzme</option>
+                                <option value="multi">Kombinasyon (Triatlon vb.)</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <label for="intensity" style="display: block; margin-bottom: 5px; font-weight: 600;">2. Antrenmanın yoğunluğu nasıldı?</label>
+                            <select id="intensity" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                                <option value="">Seçiniz...</option>
+                                <option value="low">Düşük (Hafif tempo antrenman)</option>
+                                <option value="medium">Orta (Normal antrenman)</option>
+                                <option value="high">Yüksek (Yüksek yoğunluklu veya uzun antrenman)</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <label for="time" style="display: block; margin-bottom: 5px; font-weight: 600;">3. Soğuma için ne kadar zamanınız var?</label>
+                            <select id="time" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                                <option value="">Seçiniz...</option>
+                                <option value="short">5-10 dakika (Kısa)</option>
+                                <option value="medium">10-20 dakika (Orta)</option>
+                                <option value="long">20-30 dakika (Uzun)</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px;">
+                            <label for="area" style="display: block; margin-bottom: 5px; font-weight: 600;">4. Özellikle hangi bölgeye odaklanmak istiyorsunuz?</label>
+                            <select id="area" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                                <option value="">Seçiniz...</option>
+                                <option value="lower">Alt Vücut (Bacaklar, kalça)</option>
+                                <option value="upper">Üst Vücut (Omuz, kol, göğüs)</option>
+                                <option value="core">Merkez (Sırt, karın)</option>
+                                <option value="full">Tüm Vücut</option>
+                            </select>
+                        </div>
+                        
+                        <button id="generate-protocol" style="background-color: var(--primary); color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: 600;">Protokol Oluştur</button>
+                    </div>
+                    
+                    <div id="protocol-result" style="margin-top: 20px; display: none;">
+                        <h4 style="margin-bottom: 10px;">Size Özel Soğuma ve Esneme Protokolü</h4>
+                        <div id="protocol-content" style="padding: 20px; background-color: #f0f8ff; border-radius: 8px; border-left: 5px solid var(--primary);"></div>
+                    </div>
+                </div>
+                
+                <div id="zaman-kisitli" class="tab-content">
+                    <h3>Zaman Kısıtlı Protokoller</h3>
+                    <p>Zamanınız kısıtlıysa, aşağıdaki hızlı soğuma ve esneme protokollerini deneyebilirsiniz:</p>
+                    
+                    <div class="accordion">5 Dakikalık Acil Protokol</div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>Bu protokol, minimum zamanınız olduğunda temel soğuma ihtiyaçlarını karşılamak için tasarlanmıştır:</p>
+                            <ol class="protocol-steps">
+                                <li><strong>2 Dakika Aktif Soğuma:</strong> Aktivitenize bağlı olarak, yavaş yürüyüş, hafif pedal çevirme veya rahat yüzme</li>
+                                <li><strong>3 Dakika Temel Esnemeler:</strong>
+                                    <ul>
+                                        <li>Quadriceps esneme (her bacak 30 saniye)</li>
+                                        <li>Hamstring esneme (her bacak 30 saniye)</li>
+                                        <li>Göğüs ve omuz esneme (30 saniye)</li>
+                                        <li>Üst sırt esneme (30 saniye)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">10 Dakikalık Standart Protokol</div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>Bu protokol, temel soğuma ve esneme ihtiyaçlarını karşılamak için optimum zamanı sağlar:</p>
+                            <ol class="protocol-steps">
+                                <li><strong>3 Dakika Aktif Soğuma:</strong> Aktivitenize bağlı olarak, yoğunluğu kademeli olarak azaltın</li>
+                                <li><strong>2 Dakika Dinamik Hareketler:</strong> Kol ve bacak salınımları, kalça daireleri</li>
+                                <li><strong>5 Dakika Temel Esnemeler:</strong>
+                                    <ul>
+                                        <li>Alt vücut esneme (her hareket 30 saniye)</li>
+                                        <li>Üst vücut esneme (her hareket 30 saniye)</li>
+                                        <li>Merkez bölge esneme (30 saniye)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">15 Dakikalık Kapsamlı Protokol</div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>Bu protokol, daha kapsamlı bir soğuma ve esneme deneyimi sunar:</p>
+                            <ol class="protocol-steps">
+                                <li><strong>5 Dakika Aktif Soğuma:</strong> Aktivitenize bağlı olarak, yoğunluğu kademeli olarak azaltın</li>
+                                <li><strong>3 Dakika Dinamik Hareketler:</strong> Kol ve bacak salınımları, kalça daireleri, omurga rotasyonları</li>
+                                <li><strong>7 Dakika Kapsamlı Esnemeler:</strong>
+                                    <ul>
+                                        <li>Alt vücut esneme (her hareket 30-45 saniye)</li>
+                                        <li>Üst vücut esneme (her hareket 30-45 saniye)</li>
+                                        <li>Merkez bölge esneme (her hareket 30-45 saniye)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="kombinasyon" class="tab-content">
+                    <h3>Kombinasyon Protokolleri</h3>
+                    <p>Birden fazla spor türü içeren antrenmanlar (örneğin triatlon antrenmanları) için özel protokoller:</p>
+                    
+                    <div class="accordion">Koşu + Bisiklet Kombinasyonu</div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>Bu protokol, özellikle koşu ve bisiklet kombinasyonu yapan sporcular için tasarlanmıştır:</p>
+                            <ol class="protocol-steps">
+                                <li><strong>5 Dakika Aktif Soğuma:</strong> 2-3 dakika düşük dirençte pedal çevirme + 2 dakika hafif yürüyüş</li>
+                                <li><strong>10-15 Dakika Esneme:</strong>
+                                    <ul>
+                                        <li><strong>Kalça Fleksörleri:</strong> Her bacak için 45-60 saniye (bisiklet için kritik)</li>
+                                        <li><strong>Quadriceps:</strong> Her bacak için 45-60 saniye (hem koşu hem bisiklet için önemli)</li>
+                                        <li><strong>Hamstring:</strong> Her bacak için 45-60 saniye (hem koşu hem bisiklet için önemli)</li>
+                                        <li><strong>Baldır:</strong> Her bacak için 30-45 saniye (koşu için kritik)</li>
+                                        <li><strong>Alt Sırt:</strong> Kedi-İnek hareketi, 1 dakika (bisiklet duruşu nedeniyle önemli)</li>
+                                        <li><strong>Göğüs:</strong> Kapı girişi esneme, 30-45 saniye (bisiklet duruşu nedeniyle önemli)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">Yüzme + Koşu Kombinasyonu</div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>Bu protokol, özellikle yüzme ve koşu kombinasyonu yapan sporcular için tasarlanmıştır:</p>
+                            <ol class="protocol-steps">
+                                <li><strong>5 Dakika Aktif Soğuma:</strong> 2-3 dakika hafif yürüyüş + 2-3 dakika hafif kol daireleri ve omuz rotasyonları</li>
+                                <li><strong>10-15 Dakika Esneme:</strong>
+                                    <ul>
+                                        <li><strong>Omuz ve Üst Sırt:</strong> Kol arkası ve göğüs esneme, her biri 45-60 saniye (yüzme için kritik)</li>
+                                        <li><strong>Hamstring:</strong> Her bacak için 45-60 saniye (koşu için önemli)</li>
+                                        <li><strong>Baldır:</strong> Her bacak için 30-45 saniye (koşu için kritik)</li>
+                                        <li><strong>Quadriceps:</strong> Her bacak için 30-45 saniye (koşu için önemli)</li>
+                                        <li><strong>Rotator Manşet:</strong> Özel omuz rotasyon hareketleri, her yöne 30 saniye (yüzme için kritik)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">Triatlon Tam Protokol (Yüzme + Bisiklet + Koşu)</div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <p>Bu protokol, tam triatlon antrenmanı yapan sporcular için kapsamlı bir soğuma ve esneme programı sunar:</p>
+                            <ol class="protocol-steps">
+                                <li><strong>8 Dakika Aktif Soğuma:</strong> 
+                                    <ul>
+                                        <li>3 dakika düşük dirençte pedal çevirme</li>
+                                        <li>3 dakika hafif yürüyüş</li>
+                                        <li>2 dakika omuz ve kol rotasyonları</li>
+                                    </ul>
+                                </li>
+                                <li><strong>15-20 Dakika Tam Vücut Esneme:</strong>
+                                    <ul>
+                                        <li><strong>Kalça Fleksörleri:</strong> Her bacak için 45-60 saniye (bisiklet için kritik)</li>
+                                        <li><strong>Quadriceps:</strong> Her bacak için 45-60 saniye (hem koşu hem bisiklet için önemli)</li>
+                                        <li><strong>Hamstring:</strong> Her bacak için 45-60 saniye (tüm disiplinler için önemli)</li>
+                                        <li><strong>Baldır:</strong> Her bacak için 30-45 saniye (koşu için kritik)</li>
+                                        <li><strong>Omuz Rotasyonları:</strong> Her omuz için 45-60 saniye (yüzme için kritik)</li>
+                                        <li><strong>Göğüs ve Triceps:</strong> 45-60 saniye (yüzme ve bisiklet için önemli)</li>
+                                        <li><strong>Alt ve Üst Sırt:</strong> Çocuk pozu ve kedi-inek hareketi, her biri 1 dakika</li>
+                                        <li><strong>Boyun:</strong> Boyun rotasyonları, 30 saniye (yüzme ve bisiklet için önemli)</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="kaynakca">
+            <h2>Kaynakça ve Bilimsel Referanslar</h2>
+            
+            <div class="reference-list">
+                <h3>Bilimsel Makaleler</h3>
+                <ol>
+                    <li>Van Hooren, B., & Peake, J. M. (2018). Do we need a cool-down after exercise? A narrative review of the psychophysiological effects and the effects on performance, injuries and the long-term adaptive response. Sports Medicine, 48(7), 1575-1595.</li>
+                    <li>Witvrouw, E., Mahieu, N., Danneels, L., & McNair, P. (2004). Stretching and injury prevention: an obscure relationship. Sports Medicine, 34(7), 443-449.</li>
+                    <li>Gremion, G. (2005). The effect of stretching on sports performance and the risk of sports injury: A review of the literature. Schweiz Z Med Traumatol, 53(1), 6-10.</li>
+                    <li>McGowan, C. J., Pyne, D. B., Thompson, K. G., & Rattray, B. (2015). Warm-up strategies for sport and exercise: mechanisms and applications. Sports Medicine, 45(11), 1523-1546.</li>
+                    <li>Neiva, H. P., Marques, M. C., Barbosa, T. M., Izquierdo, M., & Marinho, D. A. (2014). Warm-up and performance in competitive swimming. Sports Medicine, 44(3), 319-330.</li>
+                    <li>Rey, E., Lago-Peñas, C., Casáis, L., & Lago-Ballesteros, J. (2012). The effect of immediate post-training active and passive recovery interventions on anaerobic performance and lower limb flexibility in professional soccer players. Journal of Human Kinetics, 31, 121-129.</li>
+                    <li>Takahashi, T., & Miyamoto, Y. (1998). Influence of light physical activity on cardiac responses during recovery from exercise in humans. European Journal of Applied Physiology and Occupational Physiology, 77(4), 305-311.</li>
+                </ol>
+                
+                <h3>Web Kaynakları</h3>
+                <ol>
+                    <li>American Heart Association. (2024). Warm Up, Cool Down. <a href="https://www.heart.org/en/healthy-living/fitness/fitness-basics/warm-up-cool-down" target="_blank">https://www.heart.org/en/healthy-living/fitness/fitness-basics/warm-up-cool-down</a></li>
+                    <li>Cleveland Clinic. (2024). Why You Shouldn't Skip Cool Down Exercises. <a href="https://health.clevelandclinic.org/why-you-shouldnt-skip-cool-down-exercises" target="_blank">https://health.clevelandclinic.org/why-you-shouldnt-skip-cool-down-exercises</a></li>
+                    <li>P2Life. (2015). 5 Cool Down Exercises for Swimmers. <a href="https://www.p2life.com/blogs/blog/5-cool-down-exercises-for-swimmers" target="_blank">https://www.p2life.com/blogs/blog/5-cool-down-exercises-for-swimmers</a></li>
+                    <li>SwimSwam. (2023). 8 Essential Stretches for Swimmers. <a href="https://swimswam.com/stretches-for-swimmers/" target="_blank">https://swimswam.com/stretches-for-swimmers/</a></li>
+                    <li>Bicycling. (2024). Cooldown Exercises: 5 Mobility Moves to Do Postride. <a href="https://www.bicycling.com/training/a46487893/cooldown-exercises-for-cyclists/" target="_blank">https://www.bicycling.com/training/a46487893/cooldown-exercises-for-cyclists/</a></li>
+                    <li>Fleet Feet. (2023). Stretch It Out: 5 Best Cool Down Stretches for Runners. <a href="https://www.fleetfeet.com/blog/stretch-it-out-6-best-cool-down-exercises-for-runners" target="_blank">https://www.fleetfeet.com/blog/stretch-it-out-6-best-cool-down-exercises-for-runners</a></li>
+                </ol>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Spor Sonrası Soğuma ve Esneme Protokolleri © 2025</p>
+            <p class="author-info">Hazırlayan: Ümit Emre Erdoğan</p>
+            <p>Bu web sitesi, bilimsel araştırmalar ve profesyonel spor protokolleri temel alınarak hazırlanmıştır. Herhangi bir sağlık sorununuz varsa, soğuma ve esneme protokollerini uygulamadan önce sağlık uzmanınıza danışınız.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+        
+        // Accordion functionality
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('nav a').forEach(a => {
+                    a.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Protocol generator
+        document.getElementById('generate-protocol').addEventListener('click', function() {
+            var sportType = document.getElementById('sport-type').value;
+            var intensity = document.getElementById('intensity').value;
+            var time = document.getElementById('time').value;
+            var area = document.getElementById('area').value;
+            
+            if (!sportType || !intensity || !time || !area) {
+                alert('Lütfen tüm soruları yanıtlayın.');
+                return;
+            }
+            
+            var protocol = generateProtocol(sportType, intensity, time, area);
+            document.getElementById('protocol-content').innerHTML = protocol;
+            document.getElementById('protocol-result').style.display = 'block';
+        });
+        
+        function generateProtocol(sport, intensity, time, area) {
+            var protocol = '';
+            var activeTime, stretchTime, focusAreas;
+            
+            // Determine time allocation based on total available time
+            switch(time) {
+                case 'short':
+                    activeTime = '3-5';
+                    stretchTime = '2-5';
+                    break;
+                case 'medium':
+                    activeTime = '5-7';
+                    stretchTime = '5-13';
+                    break;
+                case 'long':
+                    activeTime = '7-10';
+                    stretchTime = '13-20';
+                    break;
+            }
+            
+            // Build protocol intro based on sport
+            switch(sport) {
+                case 'running':
+                    protocol += '<h4>Koşu Sonrası Kişiselleştirilmiş Protokol</h4>';
+                    break;
+                case 'cycling':
+                    protocol += '<h4>Bisiklet Sonrası Kişiselleştirilmiş Protokol</h4>';
+                    break;
+                case 'swimming':
+                    protocol += '<h4>Yüzme Sonrası Kişiselleştirilmiş Protokol</h4>';
+                    break;
+                case 'multi':
+                    protocol += '<h4>Çoklu Spor Kişiselleştirilmiş Protokol</h4>';
+                    break;
+            }
+            
+            // Adjust based on intensity
+            var intensityText = '';
+            switch(intensity) {
+                case 'low':
+                    intensityText = 'düşük yoğunluklu';
+                    break;
+                case 'medium':
+                    intensityText = 'orta yoğunluklu';
+                    break;
+                case 'high':
+                    intensityText = 'yüksek yoğunluklu';
+                    intensityText += ' (Aktif soğuma süresini biraz uzatmanızı öneririz)';
+                    break;
+            }
+            
+            // Build focus areas based on selection and sport
+            switch(area) {
+                case 'lower':
+                    focusAreas = 'alt vücut (bacaklar, kalça)';
+                    break;
+                case 'upper':
+                    focusAreas = 'üst vücut (omuzlar, kollar, göğüs)';
+                    break;
+                case 'core':
+                    focusAreas = 'merkez bölge (sırt, karın)';
+                    break;
+                case 'full':
+                    focusAreas = 'tüm vücut';
+                    break;
+            }
+            
+            // Build the protocol content
+            protocol += '<p>Bu protokol, ' + intensityText + ' ' + getSportText(sport) + ' antrenmanı sonrası ' + focusAreas + ' odaklı ' + time.replace('short', 'kısa').replace('medium', 'orta').replace('long', 'uzun') + ' süreli bir soğuma ve esneme programıdır.</p>';
+            
+            protocol += '<h5>1. Aktif Soğuma (' + activeTime + ' dakika)</h5>';
+            protocol += '<ul>' + getActiveCooldown(sport, intensity, time) + '</ul>';
+            
+            protocol += '<h5>2. Statik Esneme (' + stretchTime + ' dakika)</h5>';
+            protocol += '<ul>' + getStretchingExercises(sport, area, time) + '</ul>';
+            
+            protocol += '<p><strong>Not:</strong> Bu protokol sizin kişisel ihtiyaçlarınıza göre tasarlanmıştır. Herhangi bir ağrı veya rahatsızlık hissederseniz hareketi durdurun ve gerekirse bir sağlık uzmanına danışın.</p>';
+            
+            return protocol;
+        }
+        
+        function getSportText(sport) {
+            switch(sport) {
+                case 'running': return 'koşu';
+                case 'cycling': return 'bisiklet';
+                case 'swimming': return 'yüzme';
+                case 'multi': return 'çoklu spor';
+            }
+        }
+        
+        function getActiveCooldown(sport, intensity, time) {
+            var cooldown = '';
+            
+            switch(sport) {
+                case 'running':
+                    cooldown += '<li>' + getDuration(time, 'active', 1) + ' yavaş tempoda hafif koşu</li>';
+                    cooldown += '<li>' + getDuration(time, 'active', 2) + ' hızlı yürüyüş</li>';
+                    if (time !== 'short') {
+                        cooldown += '<li>' + getDuration(time, 'active', 3) + ' normal yürüyüş</li>';
+                    }
+                    break;
+                    
+                case 'cycling':
+                    cooldown += '<li>' + getDuration(time, 'active', 1) + ' düşük dirençte, rahat kadansta pedal çevirme</li>';
+                    cooldown += '<li>' + getDuration(time, 'active', 2) + ' çok hafif dirençte pedal çevirme</li>';
+                    if (time !== 'short') {
+                        cooldown += '<li>' + getDuration(time, 'active', 3) + ' normal kadansta serbest pedal çevirme</li>';
+                    }
+                    break;
+                    
+                case 'swimming':
+                    cooldown += '<li>' + getDuration(time, 'active', 1) + ' rahat tempoda serbest stil yüzme</li>';
+                    cooldown += '<li>' + getDuration(time, 'active', 2) + ' sırt üstü rahat yüzme</li>';
+                    if (time !== 'short') {
+                        cooldown += '<li>' + getDuration(time, 'active', 3) + ' uzun kayma fazlı kurbağalama</li>';
+                        cooldown += '<li>' + getDuration(time, 'active', 4) + ' su içinde dikey pozisyonda hafif hareketlerle durma</li>';
+                    }
+                    break;
+                    
+                case 'multi':
+                    cooldown += '<li>' + getDuration(time, 'active', 1) + ' yavaş tempoda yürüyüş veya hafif koşu</li>';
+                    cooldown += '<li>' + getDuration(time, 'active', 2) + ' düşük dirençte pedal çevirme (varsa)</li>';
+                    if (time !== 'short') {
+                        cooldown += '<li>' + getDuration(time, 'active', 3) + ' omuz ve kol rotasyonları</li>';
+                    }
+                    break;
+            }
+            
+            return cooldown;
+        }
+        
+        function getStretchingExercises(sport, area, time) {
+            var stretches = '';
+            var duration = (time === 'short') ? '20-30 saniye' : (time === 'medium') ? '30-45 saniye' : '45-60 saniye';
+            
+            // Common stretches based on area focus
+            if (area === 'lower' || area === 'full') {
+                stretches += '<li><strong>Quadriceps (Ön Uyluk) Esnetme:</strong> Her bacak için ' + duration + '</li>';
+                stretches += '<li><strong>Hamstring (Arka Uyluk) Esnetme:</strong> Her bacak için ' + duration + '</li>';
+                stretches += '<li><strong>Baldır Esnetme:</strong> Her bacak için ' + duration + '</li>';
+            }
+            
+            if (area === 'upper' || area === 'full') {
+                stretches += '<li><strong>Göğüs ve Omuz Esnetme:</strong> ' + duration + '</li>';
+                stretches += '<li><strong>Triceps (Kol Arkası) Esnetme:</strong> Her kol için ' + duration + '</li>';
+            }
+            
+            if (area === 'core' || area === 'full') {
+                stretches += '<li><strong>Sırt ve Omurga Esnetme (Kedi-İnek):</strong> ' + duration + '</li>';
+                stretches += '<li><strong>Yan Gövde Esnetme:</strong> Her taraf için ' + duration + '</li>';
+            }
+            
+            // Sport-specific additional stretches
+            switch(sport) {
+                case 'running':
+                    if (area === 'lower' || area === 'full') {
+                        stretches += '<li><strong>Kalça Fleksörleri Esnetme:</strong> Her bacak için ' + duration + '</li>';
+                        stretches += '<li><strong>IT Band Esnetme:</strong> Her bacak için ' + duration + '</li>';
+                    }
+                    break;
+                    
+                case 'cycling':
+                    if (area === 'lower' || area === 'full') {
+                        stretches += '<li><strong>Kalça Fleksörleri Esnetme:</strong> Her bacak için ' + duration + ' (bisikletçiler için kritik)</li>';
+                    }
+                    if (area === 'core' || area === 'full') {
+                        stretches += '<li><strong>Alt Sırt Esnetme:</strong> ' + duration + ' (bisiklet pozisyonu nedeniyle önemli)</li>';
+                    }
+                    break;
+                    
+                case 'swimming':
+                    if (area === 'upper' || area === 'full') {
+                        stretches += '<li><strong>Rotator Manşet Esnetme:</strong> Her omuz için ' + duration + ' (yüzücüler için kritik)</li>';
+                        stretches += '<li><strong>Latissimus Dorsi Esnetme:</strong> Her taraf için ' + duration + '</li>';
+                    }
+                    break;
+                    
+                case 'multi':
+                    if (time !== 'short') {
+                        stretches += '<li><strong>Tüm Vücut Esnetme (Çocuk Pozu):</strong> ' + duration + '</li>';
+                    }
+                    break;
+            }
+            
+            return stretches;
+        }
+        
+        function getDuration(time, type, order) {
+            // Return appropriate duration based on time available and exercise order
+            if (type === 'active') {
+                if (time === 'short') {
+                    return order === 1 ? '1-2 dakika' : '1-2 dakika';
+                } else if (time === 'medium') {
+                    return order === 1 ? '2-3 dakika' : order === 2 ? '2 dakika' : '1-2 dakika';
+                } else {
+                    return order === 1 ? '3-4 dakika' : order === 2 ? '2-3 dakika' : order === 3 ? '1-2 dakika' : '1 dakika';
+                }
+            } else {
+                return time === 'short' ? '20-30 saniye' : time === 'medium' ? '30-45 saniye' : '45-60 saniye';
+            }
+        }
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDu0h4UtUaxwX5CGocmvVPKgGw7DQNWPhIwv6OmkW2ivzrhp5Jbbj0XwileVrCDr74DCppGQx3iD8VG4TMJ6Ds%2BDBMoW4pmdiucfszleN7xRT%2BpRr0NXqVp07oFwnbFm3e1UNxBKznlxZp4dzDdmEQEY%2Bf3paD6EoudMrjleZr9i42y3Vc5CO3%2BpWCzpJygG4bci2CrQkqGQ3iDzD9KN6oOYVsQJ0KUi5kNn%2FmdQip%2BPBMAQcdO92AZbgEG0iJCm5%2BlwSk0a7xjLjZn7gBqyqHLIci2iHh50wULAMhuTJL6dytE%2FS5krg2WMJoy%2FdKCkLVXKGMxO6KdBOsTWxsvDRHW05QpfpmtN5uriiwG%2FifLAvJnZterf%2Bvp12LeBFsTwZYzNZ7gQMoqhjhR1hFSDtYQSk2dMAOuEgg8S4AYNuGLv47Nab5mci2JBFLr3zR0ZE%2BCI1mcawW5O1djWP6AtnlfbqcThcTKtZoG0RWEV0hfAP8jqDWpFKic7JGpm0pOAFNJbjFK8EnpFb8LMFgfkirq8%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDu0h4UtUaxwX5CGocmvVPKgGw7DQNWPhIwv6OmkW2ivzrhp5Jbbj0XwileVrCDr74DCppGQx3iD8VG4TMJ6Ds+DBMoW4pmdiucfszleN7xRT+pRr0NXqVp07oFwnbFm3e1UNxBKznlxZp4dzDdmEQEY+f3paD6EoudMrjleZr9i42y3Vc5CO3+pWCzpJygG4bci2CrQkqGQ3iDzD9KN6oOYVsQJ0KUi5kNn/mdQip+PBMAQcdO92AZbgEG0iJCm5+lwSk0a7xjLjZn7gBqyqHLIci2iHh50wULAMhuTJL6dytE/S5krg2WMJoy/dKCkLVXKGMxO6KdBOsTWxsvDRHW05QpfpmtN5uriiwG/ifLAvJnZterf+vp12LeBFsTwZYzNZ7gQMoqhjhR1hFSDtYQSk2dMAOuEgg8S4AYNuGLv47Nab5mci2JBFLr3zR0ZE+CI1mcawW5O1djWP6AtnlfbqcThcTKtZoG0RWEV0hfAP8jqDWpFKic7JGpm0pOAFNJbjFK8EnpFb8LMFgfkirq8=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
